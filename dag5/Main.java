@@ -11,7 +11,7 @@ public class Main{
         String s = br.readLine();
 //        String s = "aaa";
         while(s != null){
-            if(countVowels(s) > 2 && !combo(s) && doublettes(s)) niceStrings1++;
+            if(threeVowels(s) && !combo(s) && doublettes(s)) niceStrings1++;
             if(pair(s) && repeat(s)) niceStrings2++;
             s = br.readLine();
         }
@@ -21,9 +21,10 @@ public class Main{
 
 	}
     
-    public static int countVowels(String s){
-        return s.replaceAll("[^aeiou]","").length();
+    public static boolean threeVowels(String s){
+        return s.matches(".*?[aeiou].*?[aeiou].*?[aeiou].*?");
     }
+    
     /** returns true if combinations are found**/
     public static boolean combo(String s){
         return s.matches(".*?(ab|cd|pq|xy).*?");
