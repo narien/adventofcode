@@ -30,14 +30,14 @@ public class Main{
     }
     
     public static boolean doublettes(String s){
-        return s.matches(".*?([a-z])\\1+.*?");
+        return s.matches(".*?(.)\\1+.*?");
     }
     
     public static boolean pair(String s){
-        return s.matches(".*?([a-z][a-z]).*?\\1.*?");
+        return s.matches(".*?(..).*?\\1.*?");
     }
     
     public static boolean repeat(String s){
-        return s.matches(".*?([a-z]){1}.\\1.*?");
+        return s.matches(".*?(.){1}.\\1.*?");
     }
 }
