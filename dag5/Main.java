@@ -9,7 +9,7 @@ public class Main{
         
         BufferedReader br = new BufferedReader(new FileReader(args[0]));
         String s = br.readLine();
-//        String s = "aaa";
+
         while(s != null){
             if(threeVowels(s) && !combo(s) && doublettes(s)) niceStrings1++;
             if(pair(s) && repeat(s)) niceStrings2++;
