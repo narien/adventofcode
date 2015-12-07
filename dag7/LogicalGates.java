@@ -39,7 +39,7 @@ public class LogicalGates{
         return instructions.get(s).run();
     }
     
-	public static void main(String args[]) throws Exception{
+	public static void main(String args[]) throws Exception{ // java LogicalGates INPUTFILE TARGET
         
         LogicalGates lg = new LogicalGates();
         BufferedReader br = new BufferedReader(new FileReader(args[0]));
