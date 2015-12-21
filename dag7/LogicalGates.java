@@ -36,6 +36,7 @@ public class LogicalGates{
     }
 
     public int getWire(String s){
+        instructions.put("b", new Input("956", "b")); //To solve part two
         return instructions.get(s).run();
     }
     
@@ -49,7 +50,7 @@ public class LogicalGates{
             lg.add(line);
             line = br.readLine();
         }
-         System.out.println(lg.getWire(args[1]));
+        System.out.println(lg.getWire(args[1]));
     }
     
     
@@ -68,12 +69,15 @@ public class LogicalGates{
             return 0;
         }
         
+        protected void insert(int i){
+            instructions.put(iAm, new Input(Integer.toString(i), iAm));
+        }
+        
         public int calculate(String s){
             if(s.matches("\\d+")){
                 return Integer.parseInt(s);
             } else {
                 int i = instructions.get(s).run();
-                instructions.put(iAm, new Input(Integer.toString(i), iAm));
                 return i;
             }
         }
@@ -87,7 +91,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println("INPUT " + inputA + " to " + iAm);
-            return calculate(inputA);
+            int i = calculate(inputA);
+            insert(i);
+            return i;
         }
     }
     
@@ -102,7 +108,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println(inputA + " AND " + inputB + " to " + iAm);
-            return calculate(inputA) & calculate(inputB);
+            int i = calculate(inputA) & calculate(inputB);
+            insert(i);
+            return i;
         }
     }
 
@@ -117,7 +125,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println(inputA + " LSHIFT " + inputB + " to " + iAm);
-            return (calculate(inputA) << calculate(inputB)) & 0xFFFF;
+            int i = (calculate(inputA) << calculate(inputB)) & 0xFFFF;
+            insert(i);
+            return i;
         }
     }
     
@@ -130,7 +140,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println("NOT " + inputA + " to " + iAm);
-            return (~calculate(inputA)) & 0xFFFF;
+            int i = (~calculate(inputA)) & 0xFFFF;
+            insert(i);
+            return i;
         }
     }
     
@@ -145,7 +157,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println(inputA + " OR " + inputB + " to " + iAm);
-            return calculate(inputA) | calculate(inputB);
+            int i = calculate(inputA) | calculate(inputB);
+            insert(i);
+            return i;
         }
     }
 
@@ -160,7 +174,9 @@ public class LogicalGates{
         @Override
         public int run(){
             System.out.println(inputA + " RSHIFT " + inputB + " to " + iAm);
-            return calculate(inputA) >> calculate(inputB);
+            int i = calculate(inputA) >> calculate(inputB);
+            insert(i);
+            return i;
         }
     }
 
